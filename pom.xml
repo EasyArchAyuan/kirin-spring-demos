@@ -12,6 +12,7 @@
 
     <modules>
         <module>spring-framework-demo-helloworld-xml</module>
+        <module>spring-framework-demo-helloworld-java</module>
     </modules>
 
     <properties>
