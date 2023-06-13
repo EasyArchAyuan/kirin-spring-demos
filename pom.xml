@@ -15,7 +15,12 @@
         <module>spring-framework-demo-helloworld-xml</module>
         <module>spring-framework-demo-helloworld-java</module>
         <module>spring-framework-demo-helloworld-anno</module>
+        <module>spring-framework-demo-aop-xml</module>
+        <module>spring-framework-demo-aop-anno</module>
+        <module>spring-framework-demo-aop-proxy-jdk</module>
+        <module>spring-framework-demo-aop-proxy-cglib</module>
         <module>spring-framework-demo-bean-lifecycle</module>
+        <module>spring-framework-demo-springmvc</module>
     </modules>
 
     <properties>

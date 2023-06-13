@@ -135,7 +135,7 @@ public List<User> findUserList() {
   可以明显看到，框架将日志记录和业务需求的代码解耦了，不再是侵入式的了
 
 ```
-@Around("execution(* tech.pdai.springframework.service.*.*(..))")
+@Around("execution(* com.kirin.springframework.service.*.*(..))")
 public Object businessService(ProceedingJoinPoint pjp) throws Throwable {
     Method method = ((MethodSignature) pjp.getSignature()).getMethod();
     System.out.println("execute method: " + method.getName());
