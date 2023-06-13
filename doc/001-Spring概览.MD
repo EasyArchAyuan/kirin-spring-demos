@@ -15,7 +15,7 @@ Development》，就是在这本书中第一次出现了Spring的一些核心思
 
 [Spring官网](https://spring.io/)
 
-![img.png](img/img.png)
+![img.png](img/img01-1.png)
 
 Spring 家族中的主要分支：
 
@@ -31,7 +31,7 @@ Spring 家族中的主要分支：
 
 ### Spring有哪些组件?
 
-![img.png](img/img2.png)
+![img.png](img/img01-2.png)
 
 Spring 是一个分层架构，主要由如下 7 大模块所构成。Spring 模块位于核心容器，定义了创建、配置和管理 Bean 的方式。
 
@@ -48,6 +48,10 @@ Spring 是一个分层架构，主要由如下 7 大模块所构成。Spring 模
 * Spring Web MVC：MVC 是一个全功能的构建 Web 应用的 MVC 实现，可以通过策略接口对 MVC 框架实现高度可配置。而且 MVC 还容纳了
   JSP、Velocity、Tiles 等视图技术。
 
+### Spring资料
+
+[Spring Framework源码](https://github.com/spring-projects/spring-framework)
+
 ## 总结一下
 
 ### 什么是Spring?
@@ -61,7 +65,7 @@ Spring 是一个分层架构，主要由如下 7 大模块所构成。Spring 模
 ### 为什么用Spring?
 
 > 官网说的挺好
-> ![img.png](img/img_1.png)
+> ![img.png](img/img01-3.png)
 > 非常负责任的告诉你，最好最全的资料在Spring的官网!
 
 * 方便解耦，简化开发过程；
@@ -71,6 +75,93 @@ Spring 是一个分层架构，主要由如下 7 大模块所构成。Spring 模
 * 支持事务管理，方便进行事物操作；
 * 降低了各种 API 的开发难度；
 
-### Spring资料
-[Spring Framework源码](https://github.com/spring-projects/spring-framework)
 
+### Spring框架如何应用？
+![img.png](img/img01-4.png)
+
+### 设计需求分析
+
+结合上面的使用场景，设计一个查询用户的案例的两个需求
+- 查询用户数据
+- 所有查询方法记录日志
+
+### 那么Spring框架帮助我们做什么，它体现了什么哪些要点呢?
+
+#### 控制反转 - IOC
+
+> 来看第一个需求：查询用户（service通过调用dao查询pojo)，本质上如何创建User/Dao/Service等；
+
+- 如果没有Spring框架，我们需要自己创建User/Dao/Service等，比如：
+
+```
+UserDaoImpl userDao = new UserDaoImpl();
+UserSericeImpl userService = new UserServiceImpl();
+userService.setUserDao(userDao);
+List<User> userList = userService.findUserList();
+```
+
+- 有了Spring框架，可以将原有Bean的创建工作转给框架, 需要用时从Bean的容器中获取即可，这样便简化了开发工作
+
+```
+ApplicationContext context =
+        new ClassPathXmlApplicationContext("aspects.xml", "daos.xml", "services.xml");
+UserServiceImpl service = context.getBean("userService", UserServiceImpl.class);
+List<User> userList = service.findUserList();
+```
+
+1. Spring框架管理这些Bean的创建工作，即由用户管理Bean转变为框架管理Bean，这个就叫**控制反转 - Inversion of Control**;
+2. Spring 框架托管创建的Bean放在哪里呢？ 这便是**IoC Container**;
+3. Spring 框架为了更好让用户配置Bean，必然会引入**不同方式来配置Bean？ 这便是xml配置，Java配置，注解配置**等支持;
+4. Spring框架既然接管了Bean的生成，必然需要**管理整个Bean的生命周期**等；
+5. 应用程序代码从Ioc Container中获取依赖的Bean，注入到应用程序中，这个过程叫 **依赖注入(Dependency Injection，DI)**；
+   所以说控制反转是通过依赖注入实现的，其实它们是同一个概念的不同角度描述。通俗来说就是**IoC是设计思想，DI是实现方式**
+6. 在依赖注入时，有哪些方式呢？这就是构造器方式，@Autowired, @Resource, @Qualifier...
+   同时Bean之间存在依赖（可能存在先后顺序问题，以及**循环依赖问题**等）`
+
+#### 面向切面 - AOP
+
+> 来看第二个需求：给Service所有方法调用添加日志（调用方法时)，本质上是解耦问题；
+
+- 如果没有Spring框架，我们需要在每个service的方法中都添加记录日志的方法，比如：
+
+```
+public List<User> findUserList() {
+    System.out.println("execute method findUserList");
+    return this.userDao.findUserList();
+}
+```
+
+- 有了Spring框架，通过@Aspect注解 定义了切面，这个切面中定义了拦截所有service中的方法，并记录日志；
+  可以明显看到，框架将日志记录和业务需求的代码解耦了，不再是侵入式的了
+
+```
+@Around("execution(* tech.pdai.springframework.service.*.*(..))")
+public Object businessService(ProceedingJoinPoint pjp) throws Throwable {
+    Method method = ((MethodSignature) pjp.getSignature()).getMethod();
+    System.out.println("execute method: " + method.getName());
+    return pjp.proceed();
+}
+```
+
+1. Spring 框架通过定义切面, 通过拦截切点实现了不同业务模块的解耦，这个就叫面向切面编程 - Aspect Oriented Programming (
+   AOP)
+2. 为什么@Aspect注解使用的是aspectj的jar包呢？这就引出了Aspect4J和Spring AOP的历史渊源，只有理解了Aspect4J和Spring的渊源才能理解有些注解上的兼容设计
+3. 如何支持更多拦截方式来实现解耦， 以满足更多场景需求呢？ 这就是@Around, @Pointcut... 等的设计
+4. 那么Spring框架又是如何实现AOP的呢？ 这就引入代理技术，分静态代理和动态代理，动态代理又包含JDK代理和CGLIB代理等
+
+### Spring框架设计如何逐步简化开发的
+
+通过上述的框架介绍和例子，已经初步知道了Spring设计的两个大的要点：IOC和AOP；
+从框架的设计角度而言，更为重要的是简化开发，比如提供更为便捷的配置Bean的方式，直至0配置（即约定大于配置）。
+
+1. Java 配置方式改造
+    - User，UserDaoImpl, UserServiceImpl，LogAspect不用改
+    - 将原通过.xml配置转换为Java配置,在App中加载BeansConfig的配置
+2. 注解配置方式改造
+    - Java 5开始提供注解支持，Spring 2.5 开始完全支持基于注解的配置并且也支持JSR250 注解。在Spring后续的版本发展倾向于通过注解和Java配置结合使用.
+    - BeanConfig 不再需要Java配置
+    - UserDaoImpl 增加了 @Repository注解
+    - UserServiceImpl 增加了@Service 注解，并通过@Autowired注入userDao.
+    - 在App中扫描com.kirin.springframework包
+3. SpringBoot托管配置
+    - Springboot实际上通过约定大于配置的方式，使用xx-starter统一的对Bean进行默认初始化，用户只需要很少的配置就可以进行开发了。
