@@ -102,7 +102,7 @@ List<User> userList = userService.findUserList();
 
 - 有了Spring框架，可以将原有Bean的创建工作转给框架, 需要用时从Bean的容器中获取即可，这样便简化了开发工作
 
-```
+``` java
 ApplicationContext context =
         new ClassPathXmlApplicationContext("aspects.xml", "daos.xml", "services.xml");
 UserServiceImpl service = context.getBean("userService", UserServiceImpl.class);

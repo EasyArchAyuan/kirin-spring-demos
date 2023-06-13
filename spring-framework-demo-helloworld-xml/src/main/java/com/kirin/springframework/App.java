@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("aspects.xml", "daos.xml", "services.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("aspects.xml", "services.xml");
 
         UserServiceImpl service = context.getBean("userService", UserServiceImpl.class);
 

@@ -15,7 +15,7 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean id="logAspect" class="aspect.com.kirin.springframework.LogAspect">
+    <bean id="logAspect" class="com.kirin.springframework.aspect.LogAspect">
         <!-- configure properties of aspect here as normal -->
     </bean>
     <!-- more bean definitions for data access objects go here -->
