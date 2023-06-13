@@ -1,4 +1,4 @@
-package com.ayuan.service;
+package com.kirin.service;
 
 public interface LoginService {
 

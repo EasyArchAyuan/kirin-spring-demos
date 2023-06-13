@@ -1,7 +1,7 @@
-package com.ayuan.service;
+package com.kirin.service;
 
-import com.ayuan.spring.Component;
-import com.ayuan.spring.Scope;
+import com.kirin.spring.Component;
+import com.kirin.spring.Scope;
 
 /**
  * @author Ayuan

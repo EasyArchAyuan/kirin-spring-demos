@@ -1,4 +1,4 @@
-package com.ayuan.spring;
+package com.kirin.spring;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

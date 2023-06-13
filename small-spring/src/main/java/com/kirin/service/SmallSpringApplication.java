@@ -1,13 +1,14 @@
-package com.ayuan.service;
+package com.kirin.service;
 
-import com.ayuan.spring.DiyApplicationContext;
+import com.kirin.spring.DiyApplicationContext;
 
 /**
  * @author Ayuan
  * @Description: 测试启动类
  * @date 2023/5/8 15:01
  */
-public class Test {
+public class SmallSpringApplication {
+
     public static void main(String[] args) {
         //spring容器自定义
         DiyApplicationContext diyApplicationContext = new DiyApplicationContext(AppConfig.class);

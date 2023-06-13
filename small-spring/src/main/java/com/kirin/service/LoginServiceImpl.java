@@ -1,9 +1,9 @@
-package com.ayuan.service;
+package com.kirin.service;
 
-import com.ayuan.spring.Autowired;
-import com.ayuan.spring.BeanNameAware;
-import com.ayuan.spring.Component;
-import com.ayuan.spring.InitializingBean;
+import com.kirin.spring.Autowired;
+import com.kirin.spring.BeanNameAware;
+import com.kirin.spring.Component;
+import com.kirin.spring.InitializingBean;
 
 /**
  * @author Ayuan

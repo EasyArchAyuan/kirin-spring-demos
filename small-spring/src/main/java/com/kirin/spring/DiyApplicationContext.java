@@ -1,4 +1,4 @@
-package com.ayuan.spring;
+package com.kirin.spring;
 
 import java.beans.Introspector;
 import java.io.File;

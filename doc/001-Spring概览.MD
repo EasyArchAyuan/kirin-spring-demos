@@ -165,3 +165,4 @@ public Object businessService(ProceedingJoinPoint pjp) throws Throwable {
     - 在App中扫描com.kirin.springframework包
 3. SpringBoot托管配置
     - Springboot实际上通过约定大于配置的方式，使用xx-starter统一的对Bean进行默认初始化，用户只需要很少的配置就可以进行开发了。
+

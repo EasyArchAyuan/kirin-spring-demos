@@ -1,4 +1,4 @@
-package com.ayuan.spring;
+package com.kirin.spring;
 
 public interface BeanPostProcessor {
 

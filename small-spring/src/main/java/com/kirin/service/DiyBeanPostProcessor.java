@@ -1,7 +1,7 @@
-package com.ayuan.service;
+package com.kirin.service;
 
-import com.ayuan.spring.BeanPostProcessor;
-import com.ayuan.spring.Component;
+import com.kirin.spring.BeanPostProcessor;
+import com.kirin.spring.Component;
 
 import java.lang.reflect.Proxy;
 

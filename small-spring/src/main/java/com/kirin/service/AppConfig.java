@@ -1,12 +1,12 @@
-package com.ayuan.service;
+package com.kirin.service;
 
-import com.ayuan.spring.ComponentScan;
+import com.kirin.spring.ComponentScan;
 
 /**
  * @author Ayuan
  * @Description: 配置文件
  * @date 2023/5/8 15:03
  */
-@ComponentScan("com.ayuan.service")
+@ComponentScan("com.kirin.service")
 public class AppConfig {
 }
