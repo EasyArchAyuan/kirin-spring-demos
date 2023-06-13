@@ -65,10 +65,11 @@ public class UserLogProxy {
                 return result;
             }
         };
-        /**
-         * loader: 代理对象使用的类加载器.
-         * interfaces: 指定代理对象的类型. 即代理代理对象中可以有哪些方法.
-         * h: 当具体调用代理对象的方法时, 应该如何进行响应, 实际上就是调用 InvocationHandler 的 invoke 方法
+
+        /*
+          loader: 代理对象使用的类加载器.
+          interfaces: 指定代理对象的类型. 即代理代理对象中可以有哪些方法.
+          h: 当具体调用代理对象的方法时, 应该如何进行响应, 实际上就是调用 InvocationHandler 的 invoke 方法
          */
         proxy = (IUserService) Proxy.newProxyInstance(loader, interfaces, h);
         return proxy;
