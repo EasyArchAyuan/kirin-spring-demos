@@ -10,20 +10,15 @@
  http://www.springframework.org/schema/context
  http://www.springframework.org/schema/context/spring-context.xsd
 ">
-
     <context:component-scan base-package="com.kirin.springframework" />
 
     <aop:aspectj-autoproxy/>
 
     <!-- 目标类 -->
-    <bean id="demoService" class="com.kirin.springframework.service.AopDemoServiceImpl">
-        <!-- configure properties of bean here as normal -->
-    </bean>
+    <bean id="demoService" class="com.kirin.springframework.service.AopDemoServiceImpl"/>
 
     <!-- 切面 -->
-    <bean id="logAspect" class="com.kirin.springframework.aspect.LogAspect">
-        <!-- configure properties of aspect here as normal -->
-    </bean>
+    <bean id="logAspect" class="com.kirin.springframework.aspect.LogAspect"/>
 
     <aop:config>
         <!-- 配置切面 -->
@@ -43,6 +38,4 @@
         </aop:aspect>
     </aop:config>
 
-
-    <!-- more bean definitions for data access objects go here -->
 </beans>

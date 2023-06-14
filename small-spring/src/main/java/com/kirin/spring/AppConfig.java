@@ -1,4 +1,4 @@
-package com.kirin.service;
+package com.kirin.spring;
 
 import com.kirin.spring.ComponentScan;
 
