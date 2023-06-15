@@ -8,16 +8,15 @@ import java.util.List;
 
 public class UserServiceImpl {
 
-    /**
-     * user dao impl.
-     */
-    private UserDaoImpl userDao;
-
-    /**
-     * init.
-     */
     public UserServiceImpl() {
     }
+
+    private UserDaoImpl userDao;
+
+    public void setUserDao(UserDaoImpl userDao) {
+        this.userDao = userDao;
+    }
+
 
     /**
      * find user list.
@@ -25,15 +24,15 @@ public class UserServiceImpl {
      * @return user list
      */
     public List<User> findUserList() {
+        //执行方法日志
+//        System.out.println("execute method: findUserList");
         return this.userDao.findUserList();
     }
 
-    /**
-     * set dao.
-     *
-     * @param userDao user dao
-     */
-    public void setUserDao(UserDaoImpl userDao) {
-        this.userDao = userDao;
+    public String getUserName() {
+//        System.out.println("execute method: getUserName");
+        List<User> userList = this.userDao.findUserList();
+        return userList.get(0).getName();
     }
+
 }

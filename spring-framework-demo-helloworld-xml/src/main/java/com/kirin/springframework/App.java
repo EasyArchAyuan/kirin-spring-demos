@@ -12,16 +12,20 @@ public class App {
 
     public static void main(String[] args) {
         //传统开发:
-        UserDaoImpl userDao = new UserDaoImpl();
-        UserServiceImpl service = new UserServiceImpl();
-        service.setUserDao(userDao);
+//        UserDaoImpl userDao = new UserDaoImpl();
+//        UserServiceImpl service = new UserServiceImpl();
+//        service.setUserDao(userDao);
 
         //IOC开发：
-//        ApplicationContext context = new ClassPathXmlApplicationContext("aspects.xml", "services.xml");
-//        UserServiceImpl service = context.getBean("userService", UserServiceImpl.class);
-//
+        ApplicationContext context = new ClassPathXmlApplicationContext("aspects.xml", "services.xml");
+        UserServiceImpl service = context.getBean("userService", UserServiceImpl.class);
+
 
         List<User> userList = service.findUserList();
         userList.forEach(a -> System.out.println(a.getName() + "," + a.getAge()));
+
+
+        String userName = service.getUserName();
+        System.out.println(userName);
     }
 }

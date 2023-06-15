@@ -104,7 +104,7 @@ List<User> userList = userService.findUserList();
 
 ``` java
 ApplicationContext context =
-        new ClassPathXmlApplicationContext("aspects.xml", "daos.xml", "services.xml");
+        new ClassPathXmlApplicationContext("services.xml");
 UserServiceImpl service = context.getBean("userService", UserServiceImpl.class);
 List<User> userList = service.findUserList();
 ```
