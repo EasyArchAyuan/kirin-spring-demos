@@ -35,7 +35,7 @@ public class UserServiceImpl {
      *
      * @param userDao user dao
      */
-    public void setUserDao(UserDaoImpl userDao) {
+    public void setUserDao(final UserDaoImpl userDao) {
         this.userDao = userDao;
     }
 }
