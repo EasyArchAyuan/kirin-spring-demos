@@ -1,5 +1,6 @@
 package com.kirin.spring;
 
+import com.kirin.service.AppConfig;
 import com.kirin.service.LoginService;
 
 /**
@@ -13,7 +14,7 @@ public class SmallSpringApplication {
         //spring容器自定义
         DiyApplicationContext diyApplicationContext = new DiyApplicationContext(AppConfig.class);
         //获取对象
-        LoginService loginServiceImpl = (LoginService) diyApplicationContext.getBean("loginServiceImpl");
+        LoginService loginServiceImpl = (LoginService) diyApplicationContext.getBean("loginService");
         //执行方法
         loginServiceImpl.test();
     }

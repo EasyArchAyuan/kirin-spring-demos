@@ -10,23 +10,18 @@ import com.kirin.spring.InitializingBean;
  * @Description: 登录测试
  * @date 2023/5/8 17:59
  */
-@Component
+@Component("loginService")
 public class LoginServiceImpl implements BeanNameAware, InitializingBean, LoginService {
 
     @Autowired
-    private UserService userServiceImpl;
+    private UserService userService;
 
     private String beanName;
-
-    private String xxx;
-
-    public void login() {
-        System.out.println(userServiceImpl.getName());
-    }
 
     @Override
     public void setBeanName(String beanName) {
         this.beanName = beanName;
+        System.out.println("BeanNameAware");
     }
 
     @Override
@@ -37,6 +32,7 @@ public class LoginServiceImpl implements BeanNameAware, InitializingBean, LoginS
 
     @Override
     public void test() {
-        System.out.println(userServiceImpl);
+        String name = userService.getName();
+        System.out.println(name + "test");
     }
 }

@@ -3,7 +3,6 @@ package com.kirin.spring;
 import java.beans.Introspector;
 import java.io.File;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class DiyApplicationContext {
             //1.获取扫描包名（com.ayuan.service）
             String path = componentScanAnnotation.value();
             //2.转换为相对路径名（com/ayuan/service）
-            path = path.replace(".", "/");
+            path = path.replace(".", System.getProperty("file.separator"));
             ClassLoader classLoader = DiyApplicationContext.class.getClassLoader();
             //3.通过classLoader转换为绝对路径
             URL resource = classLoader.getResource(path);
@@ -51,8 +50,7 @@ public class DiyApplicationContext {
                         // 根据操作系统不同获取不同分隔符（windows \\）(unix /)
                         className = className.replace(System.getProperty("file.separator"), ".");
                         try {
-                            //Class<?> clazz = Class.forName(className);
-                            Class<?> clazz = classLoader.loadClass(className);
+                            Class<?> clazz = Class.forName(className);
                             if (clazz.isAnnotationPresent(Component.class)) {
                                 //6.扔进beanPostProcessorList里面
                                 if (BeanPostProcessor.class.isAssignableFrom(clazz)) {
@@ -102,7 +100,7 @@ public class DiyApplicationContext {
         Class clazz = beanDefinition.getType();
         try {
             //2.根据类的构造方法反射拿到obj
-            Object instance = clazz.getConstructor().newInstance();
+            Object instance = clazz.newInstance();
             //3.依赖注入
             for (Field f : clazz.getDeclaredFields()) {
                 if (f.isAnnotationPresent(Autowired.class)) {
@@ -129,8 +127,7 @@ public class DiyApplicationContext {
                 System.out.println(o);
             }
             return instance;
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                 NoSuchMethodException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }

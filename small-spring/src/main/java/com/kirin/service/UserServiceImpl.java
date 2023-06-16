@@ -8,7 +8,7 @@ import com.kirin.spring.Scope;
  * @Description: 测试service
  * @date 2023/5/8 15:01
  */
-@Component("userServiceImpl")
+@Component("userService")
 //@Scope("prototype")
 @Scope("singleton")
 public class UserServiceImpl implements UserService {

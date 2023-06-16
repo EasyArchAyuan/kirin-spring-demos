@@ -3,6 +3,7 @@ package com.kirin.springframework.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.kirin.springframework.dao.UserDaoImpl;
 import com.kirin.springframework.entity.User;
@@ -10,7 +11,7 @@ import com.kirin.springframework.entity.User;
 /**
  * @author kirin
  */
-@Service
+@Component
 public class UserServiceImpl {
 
     /**
