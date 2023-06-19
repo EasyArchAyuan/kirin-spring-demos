@@ -1,3 +1,97 @@
+### 代理
+代理就是帮人做事情。比如我们现在很常用的代购场景，我媳妇需要买一套护肤品，去官网买的话比较贵，所以就找代购去买，代购其实也没有这个护肤品，但是他有渠道直接跟护肤品的商家有关系，能直接从商家拿这个护肤品，你是没办法联系上这个商家的，但是他肯定不能一点酬劳都不收，所以他会加价卖给你，这就是代理的典型模式。
+![img_1.png](img_1.png)
+原本客户需要直接调用目标类（委托类），而现在客户需要通过代理类来调用目标类。
+
+
+### 静态代理
+代理类是自己手动创建的，所需要代理的目标类是确定的，实现简单容易理解
+
+
+
+### 动态代理
+代理模式的解释：为其他对象提供一种代理以控制对这个对象的访问，增强一个类中的某个方法，对程序进行扩展。
+比如，现在存在一个UserService类：
+```Java
+public class UserService {
+
+  public void test() {
+    System.out.println("test...");
+  }
+
+}
+```
+此时，我们new一个UserService对象，然后执行test()方法，结果是显而易见的。
+如果我们现在想在不修改UserService类的源码前提下，给test()增加额外逻辑，那么就可以使用动态代理机制来创建UserService对象了，比如：
+```
+UserService target = new UserService();
+
+// 通过cglib技术
+Enhancer enhancer = new Enhancer();
+enhancer.setSuperclass(UserService.class);
+
+// 定义额外逻辑，也就是代理逻辑
+enhancer.setCallbacks(new Callback[]{new MethodInterceptor() {
+	@Override
+	public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+		System.out.println("before...");
+		Object result = methodProxy.invoke(target, objects);
+		System.out.println("after...");
+		return result;
+	}
+}});
+
+// 动态代理所创建出来的UserService对象
+UserService userService = (UserService) enhancer.create();
+
+// 执行这个userService的test方法时，就会额外会执行一些其他逻辑
+userService.test();
+```
+得到的都是UserService对象，但是执行test()方法时的效果却不一样了，这就是代理所带来的效果。
+
+上面是通过cglib来实现的代理对象的创建，是基于父子类的，被代理类（UserService）是父类，代理类是子类，代理对象就是代理类的实例对象，代理类是由cglib创建的，对于程序员来说不用关心。
+
+除开cglib技术，jdk本身也提供了一种创建代理对象的动态代理机制，但是它只能代理接口，也就是UserService得先有一个接口才能利用jdk动态代理机制来生成一个代理对象，比如：
+
+```java
+
+public interface UserInterface {
+	public void test();
+}
+
+public class UserService implements UserInterface {
+
+	public void test() {
+		System.out.println("test...");
+	}
+
+}
+```
+利用JDK动态代理来生成一个代理对象：
+```
+UserService target = new UserService();
+
+// UserInterface接口的代理对象
+        Object proxy = Proxy.newProxyInstance(UserService.class.getClassLoader(), new Class[]{UserInterface.class}, new InvocationHandler() {
+@Override
+public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("before...");
+        Object result = method.invoke(target, args);
+        System.out.println("after...");
+        return result;
+        }
+        });
+
+        UserInterface userService = (UserInterface) proxy;
+        userService.test();
+```
+如果你把new Class[]{UserInterface.class}，替换成new Class[]{UserService.class}，允许代码会直接报错：
+由于这个限制，所以产生的代理对象的类型是UserInterface，而不是UserService，这是需要注意的。
+
+
+
+
+
 ### AOP是什么?
 
 AOP最早是AOP联盟的组织提出的,指定的一套规范,spring将AOP的思想引入框架之中,通过预编译方式和运行期间动态代理实现程序的统一维护的一种技术

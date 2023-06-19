@@ -19,6 +19,9 @@ public class App {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.kirin.springframework");
         UserServiceImpl service = context.getBean(UserServiceImpl.class);
+        System.out.println(service);
+        UserServiceImpl service2 = context.getBean(UserServiceImpl.class);
+        System.out.println(service2);
         List<User> userList = service.findUserList();
         userList.forEach(a -> System.out.println(a.getName() + "," + a.getAge()));
     }
