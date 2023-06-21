@@ -2,6 +2,7 @@ package com.kirin.springframework.service;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,14 @@ import com.kirin.springframework.entity.User;
  * @author kirin
  */
 @Component
+@RequiredArgsConstructor
 public class UserServiceImpl {
 
     /**
      * user dao impl.
      */
-    @Autowired
-    private UserDaoImpl userDao;
+
+    private final UserDaoImpl userDao;
 
     /**
      * find user list.
