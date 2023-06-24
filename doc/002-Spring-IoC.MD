@@ -319,7 +319,7 @@ DI(依赖注入)其实就是IOC的另外一种说法，DI是由Martin Fowler 在
 - 2):等到类需要被初始化时（比如说new、反射等）
 - 3):class文件被虚拟机通过类加载器加载到JVM候选者：
 - 4):初始化对象供我们使用候选者：简单来说，可以理解为它是用Class对象作为「模板」进而创建出具体的实例
-![img.png](img.png)
+![img.png](img/img.png)
 
 ------
 而Spring所管理的Bean不同的是，除了Class对象之外，还会使用BeanDefinition的实例来描述对象的信息
