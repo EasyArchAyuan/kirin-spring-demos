@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import com.kirin.springframework.dao.UserDaoImpl;
 import com.kirin.springframework.entity.User;
 
@@ -23,8 +22,6 @@ public class UserServiceImpl {
 
     private final UserDaoImpl userDao;
 
-    @Autowired
-    private Environment environment;
 
     /**
      * find user list.
@@ -35,7 +32,4 @@ public class UserServiceImpl {
         return userDao.findUserList();
     }
 
-    public UserServiceImpl(){
-        System.out.println("UserServiceImpl的构造方法打印environment="+environment);
-    }
 }
