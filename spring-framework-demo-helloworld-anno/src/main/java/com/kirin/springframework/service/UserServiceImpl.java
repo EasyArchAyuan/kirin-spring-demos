@@ -3,6 +3,7 @@ package com.kirin.springframework.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.kirin.springframework.dao.UserDaoImpl;
@@ -20,6 +21,9 @@ public class UserServiceImpl {
     @Autowired
     private UserDaoImpl userDao;
 
+    @Autowired
+    private Environment environment;
+
     /**
      * find user list.
      *
@@ -29,4 +33,7 @@ public class UserServiceImpl {
         return userDao.findUserList();
     }
 
+    public UserServiceImpl(){
+        System.out.println("UserServiceImpl的构造方法打印environment="+environment);
+    }
 }
