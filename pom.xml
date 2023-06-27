@@ -24,6 +24,7 @@
         <module>springboot-demo-helloworld</module>
         <module>springboot-demo-helloworld-mvc</module>
         <module>springboot-demo-helloworld-build-war</module>
+        <module>springboot-demo-bigfileupload</module>
     </modules>
 
     <properties>
