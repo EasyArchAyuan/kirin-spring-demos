@@ -1,6 +1,5 @@
 package com.kirin.springboot.helloworld.controller;
 
-import com.kirin.HelloFormatTemplate;
 import com.kirin.springboot.helloworld.entity.User;
 import com.kirin.springboot.helloworld.service.UserService;
 import org.springframework.web.bind.annotation.*;
