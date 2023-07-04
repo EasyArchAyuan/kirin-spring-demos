@@ -1,4 +1,4 @@
-package com.kirin.spring.error;
+package com.kirin.spring.entitys;
 
 /**
  * @author kirin

@@ -1,4 +1,4 @@
-package com.kirin.spring.annotation;
+package com.kirin.spring.config;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

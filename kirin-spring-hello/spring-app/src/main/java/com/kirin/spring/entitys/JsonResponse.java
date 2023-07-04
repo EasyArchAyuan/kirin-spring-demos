@@ -1,9 +1,6 @@
 package com.kirin.spring.entitys;
 
 
-import com.kirin.spring.error.AppError;
-import com.kirin.spring.error.BaseErrorCodeEnum;
-
 import java.io.Serializable;
 
 /**

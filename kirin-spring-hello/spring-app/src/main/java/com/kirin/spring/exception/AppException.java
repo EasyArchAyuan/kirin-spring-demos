@@ -1,7 +1,7 @@
 package com.kirin.spring.exception;
 
 import com.alibaba.fastjson.JSONObject;
-import com.kirin.spring.error.AppError;
+import com.kirin.spring.entitys.AppError;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;

@@ -2,9 +2,9 @@ package com.kirin.spring.exception;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.kirin.spring.annotation.BodyReaderRequestWrapper;
+import com.kirin.spring.config.BodyReaderRequestWrapper;
 import com.kirin.spring.entitys.JsonResponse;
-import com.kirin.spring.error.BaseErrorCodeEnum;
+import com.kirin.spring.entitys.BaseErrorCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,7 +30,7 @@ public class ExceptionControllerAdvice {
      * @return
      */
     @ResponseBody
-    @ExceptionHandler(value = Throwable.class)
+    @ExceptionHandler(value = Exception.class)
     public JSONObject errorHandler(
             HttpServletRequest request,
             Throwable ex

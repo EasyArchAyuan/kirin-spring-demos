@@ -1,4 +1,4 @@
-package com.kirin.spring.error;
+package com.kirin.spring.entitys;
 
 /**
  * 错误代码枚举
