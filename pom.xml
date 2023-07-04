@@ -25,6 +25,8 @@
         <module>springboot-demo-helloworld-mvc</module>
         <module>springboot-demo-helloworld-build-war</module>
         <module>springboot-demo-bigfileupload</module>
+        <module>springboot-demo-druid</module>
+        <module>start-my-fist-spring</module>
     </modules>
 
     <properties>
