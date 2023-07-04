@@ -22,7 +22,6 @@ public class AyscInitExecutorApplication {
 
 
     @Bean(value = "person",initMethod = "init")
-    @SofaAsyncInit
     public Person person(){
         return new Person();
     }
