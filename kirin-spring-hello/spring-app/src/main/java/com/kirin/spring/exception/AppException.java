@@ -7,7 +7,7 @@ import org.springframework.util.StringUtils;
 import java.text.MessageFormat;
 
 /**
- * @author lh
+ * @author kirin
  */
 
 public class AppException extends RuntimeException {

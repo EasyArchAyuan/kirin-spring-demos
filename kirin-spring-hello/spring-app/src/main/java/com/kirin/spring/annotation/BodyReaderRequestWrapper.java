@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * 请求body包装器
  *
- * @author lh
+ * @author kirin
  **/
 public class BodyReaderRequestWrapper extends HttpServletRequestWrapper {
 

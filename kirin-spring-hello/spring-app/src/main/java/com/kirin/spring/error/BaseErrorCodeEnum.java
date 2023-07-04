@@ -3,7 +3,7 @@ package com.kirin.spring.error;
 /**
  * 错误代码枚举
  *
- * @author lh
+ * @author kirin
  */
 public enum BaseErrorCodeEnum implements AppError {
 

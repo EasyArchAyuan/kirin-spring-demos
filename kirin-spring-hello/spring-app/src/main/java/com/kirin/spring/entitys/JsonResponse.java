@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 统一响应报文
  *
- * @author lh
+ * @author kirin
  */
 public class JsonResponse<T> implements Serializable {
 

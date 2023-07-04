@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * @author lh
+ * @author kirin
  * @Description SpringController 异常捕获处理增强
  **/
 @Slf4j

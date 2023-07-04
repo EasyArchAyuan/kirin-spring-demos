@@ -1,7 +1,7 @@
 package com.kirin.spring.error;
 
 /**
- * @author lh
+ * @author kirin
  * 自定义错误接口
  */
 public interface AppError {
