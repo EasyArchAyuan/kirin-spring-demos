@@ -3,6 +3,7 @@ package com.kirin.springframework.service;
 
 import com.kirin.springframework.dao.UserDaoImpl;
 import com.kirin.springframework.entity.User;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,7 @@ public class UserServiceImpl {
      * user dao impl.
      */
 
-    private final UserDaoImpl userDao;
-
+    final UserDaoImpl userDao;
 
     /**
      * find user list.

@@ -1,11 +1,11 @@
 package com.kirin.springboot.helloworld.controller;
 
-import java.util.List;
-
+import com.kirin.HelloFormatTemplate;
 import com.kirin.springboot.helloworld.entity.User;
 import com.kirin.springboot.helloworld.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author kirin
@@ -14,8 +14,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    private final HelloFormatTemplate helloFormatTemplate;
+
+    public UserController(UserService userService, HelloFormatTemplate helloFormatTemplate) {
+        this.userService = userService;
+        this.helloFormatTemplate = helloFormatTemplate;
+    }
+
+    @GetMapping("/format")
+    public String format() {
+        User user = new User();
+        user.setUserId(110);
+        user.setUserName("Kirin");
+        return helloFormatTemplate.doFormat(user);
+    }
 
     /**
      * http://localhost:8080/user/add .

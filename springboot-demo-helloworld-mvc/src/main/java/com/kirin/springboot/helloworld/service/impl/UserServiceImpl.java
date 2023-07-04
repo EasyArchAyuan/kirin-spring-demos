@@ -2,11 +2,13 @@ package com.kirin.springboot.helloworld.service.impl;
 
 import java.util.List;
 
+import com.kirin.HelloFormatTemplate;
 import com.kirin.springboot.helloworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kirin.springboot.helloworld.dao.UserRepository;
 import com.kirin.springboot.helloworld.entity.User;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * user service impl.
