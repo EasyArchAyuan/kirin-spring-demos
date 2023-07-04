@@ -21,12 +21,10 @@
         <module>spring-framework-demo-aop-proxy-cglib</module>
         <module>spring-framework-demo-bean-lifecycle</module>
         <module>spring-framework-demo-springmvc</module>
-<!--        <module>springboot-demo-helloworld</module>-->
         <module>springboot-demo-helloworld-mvc</module>
-        <module>springboot-demo-helloworld-build-war</module>
         <module>springboot-demo-bigfileupload</module>
-        <module>springboot-demo-druid</module>
         <module>start-my-fist-spring</module>
+        <module>kirin-spring-hello</module>
     </modules>
 
     <properties>
