@@ -1,7 +1,10 @@
 package com.kirin.spring.controller;
 
+import com.kirin.spring.anno.ApiVersion;
 import com.kirin.spring.entitys.JsonResponse;
+import com.kirin.spring.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +17,9 @@ import java.io.IOException;
 @RequestMapping("/file")
 @Slf4j
 public class FileController {
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/upload")
     public JsonResponse upload(@RequestParam(value = "file") MultipartFile file) {
@@ -53,5 +59,31 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @GetMapping("/excel/download")
+    public void download(HttpServletResponse response) {
+        try {
+            response.reset();
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-disposition",
+                    "attachment;filename=user_excel_" + System.currentTimeMillis() + ".xlsx");
+            userService.downloadExcel(response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @PostMapping("/excel/upload")
+    public JsonResponse uploadExcel(@RequestParam(value = "file") MultipartFile file) {
+        try {
+            userService.uploadExcel(file.getInputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonResponse.fail("上传失败");
+        }
+        return JsonResponse.success();
     }
 }
