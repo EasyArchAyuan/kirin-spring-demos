@@ -16,19 +16,8 @@ public class UserController {
 
     private final UserService userService;
 
-    private final HelloFormatTemplate helloFormatTemplate;
-
-    public UserController(UserService userService, HelloFormatTemplate helloFormatTemplate) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.helloFormatTemplate = helloFormatTemplate;
-    }
-
-    @GetMapping("/format")
-    public String format() {
-        User user = new User();
-        user.setUserId(110);
-        user.setUserName("Kirin");
-        return helloFormatTemplate.doFormat(user);
     }
 
     /**

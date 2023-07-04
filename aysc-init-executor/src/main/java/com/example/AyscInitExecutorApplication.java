@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.bean.Person;
 import com.example.bean.Student;
+import com.example.demo.spring.SofaAsyncInit;
 import com.example.spring.AsyncTaskExecutionListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,7 @@ public class AyscInitExecutorApplication {
 
 
     @Bean(value = "person",initMethod = "init")
+    @SofaAsyncInit
     public Person person(){
         return new Person();
     }
